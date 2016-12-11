@@ -20,23 +20,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 
-
-app.get('/', function(req, res){
-  res.render('home');
-});
-
-app.post('/create-user', function(req, res, next){
-  var user = new User();
-  
-  user.profile.name = req.body.name;
-  user.password = req.body.password;
-  user.email = req.body.email;
-  
-  user.save(function(err){
-    if (err) return next(err);
-    res.json('Successfully created new user');
-  });
-});
+var mainRoutes = require('./routes/main');
+var userRoutes = require('./routes/user');
+app.use(mainRoutes);
+app.use(userRoutes);
 
 app.listen(port, function (err) {
   if (err) throw err;

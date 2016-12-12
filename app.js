@@ -7,13 +7,13 @@ var express       = require('express'),
     pug           = require('pug'),
     session       = require('express-session'),
     cookieParser  = require('cookie-parser'),
-    flash         = require('express-flash'),
-    port          = (process.env.PORT || 5000);
+    flash         = require('express-flash');
 
+var config = require('./config/config');
 var User = require('./models/user');
 
 var app = express();
-mongoose.connect('mongodb://localhost/first_ecommerce', function(err){
+mongoose.connect(config.database, function(err){
   if (err) throw err;
   console.log('Successfully connected to database.');
 });
@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(session({
   resave: true,
   saveUninitialized: true,
-  secret: 'mi#$*&!(ke'
+  secret: config.secretKey
 }));
 app.use(flash());
 app.set('view engine', 'pug');
@@ -36,7 +36,7 @@ var userRoutes = require('./routes/user');
 app.use(mainRoutes);
 app.use(userRoutes);
 
-app.listen(port, function (err) {
+app.listen(config.port, function (err) {
   if (err) throw err;
   console.log('Ecommerce running on 5000...');
 });

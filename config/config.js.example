@@ -1,0 +1,7 @@
+// for your app, copy this code to config.js in same folder and edit as needed
+
+module.exports = {
+  database: 'mongodb://localhost/yourdatabasenamehere',
+  port: (process.env.PORT || 5000), //change 5000 to any local port you'd like to use
+  secretKey: 'hotpotato' //change secret key to anything you'd like
+}

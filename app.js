@@ -7,7 +7,9 @@ var express       = require('express'),
     pug           = require('pug'),
     session       = require('express-session'),
     cookieParser  = require('cookie-parser'),
-    flash         = require('express-flash');
+    flash         = require('express-flash'),
+    mongoStore    = require('connect-mongo')(session),
+    passport      = require('passport');
 
 var config = require('./config/config');
 var User = require('./models/user');
@@ -26,7 +28,8 @@ app.use(cookieParser());
 app.use(session({
   resave: true,
   saveUninitialized: true,
-  secret: config.secretKey
+  secret: config.secretKey,
+  store: new mongoStore({ url: config.database, autoReconnect: true })
 }));
 app.use(flash());
 app.set('view engine', 'pug');

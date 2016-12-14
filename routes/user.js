@@ -41,7 +41,13 @@ router.post('/signup', function(req, res, next) {
     } else {
       user.save(function (err, user) {
         if (err) return next(err);
-        res.redirect('/');
+        
+        req.logIn(user, function(err){
+          if (err) return next(err);
+          req.session.save(function(){
+            res.redirect('/profile');
+          });
+        });
       });
     }
   });

@@ -1,4 +1,24 @@
 extends ../layout
 
 block content
-  h2  Hello #{user.profile.name}!
+  .container
+      h2.text-center  Profile
+      .container
+        .row
+          .col-md-6.col-md-offset-3
+          .well
+            h4 Your Info
+            hr
+            p
+              strong Username: 
+              = user.profile.name
+            p
+              strong Email: 
+              = user.email
+            p
+              strong Address: 
+              if user.address
+                = user.address
+              else
+                | You have not entered an address yet
+            a.btn.btn-primary(href='/editprofile') Edit Profile

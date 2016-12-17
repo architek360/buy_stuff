@@ -44,8 +44,10 @@ app.set('view engine', 'pug');
 
 var mainRoutes = require('./routes/main');
 var userRoutes = require('./routes/user');
+var adminRoutes = require('./routes/admin');
 app.use(mainRoutes);
 app.use(userRoutes);
+app.use(adminRoutes);
 
 app.listen(config.port, function (err) {
   if (err) throw err;

@@ -13,6 +13,8 @@ var express       = require('express'),
 
 var config = require('./config/config');
 var User = require('./models/user');
+var Category = require('./models/category');
+var Product = require('./models/product');
 
 var app = express();
 mongoose.connect(config.database, function(err){

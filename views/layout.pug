@@ -20,6 +20,14 @@ html(lang='en')
             a.navbar-brand(href='/') BuyStuff
           #navbar.navbar-collapse.collapse
             ul.nav.navbar-nav.navbar-right
+              li
+                a.dropdown-toggle(data-toggle='dropdown', href='#') Categories
+                  ul.dropdown-menu
+                    li
+                      a(href='/add-category') - Add Category -
+                    each category in categories
+                      li
+                        a(href='#')= category.name
               if (!user)
                 li
                   a.dropdown-toggle(data-toggle='dropdown', href='#') Sign Up / Login

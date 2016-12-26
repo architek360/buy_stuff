@@ -27,7 +27,7 @@ html(lang='en')
                       a(href='/add-category') - Add Category -
                     each category in categories
                       li
-                        a(href='#')= category.name
+                        a(href='/products/' + category._id)= category.name
               if (!user)
                 li
                   a.dropdown-toggle(data-toggle='dropdown', href='#') Sign Up / Login
